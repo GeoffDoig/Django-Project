@@ -1,10 +1,12 @@
 Django==1.11.20
-chardet==2.2.1
+certifi==2019.3.9
+chardet==3.0.4
 colorama==0.2.5
 html5lib==0.999
+idna==2.8
 pycurl==7.19.3
 pytz==2018.9
-requests==2.2.1
+requests==2.21.0
 six==1.5.2
-urllib3==1.7.1
+urllib3==1.24.1
 wheel==0.24.0
