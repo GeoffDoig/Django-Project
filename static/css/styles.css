@@ -1,0 +1,31 @@
+body {
+    font-family: Arial;
+    padding-top: 100px;
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top: 1px solid #ededed;
+    color: #A9A9A9;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.accountform {
+    padding-top: 20px;
+}
+
+.success {
+    background-color: green;
+    list-style-type: none;
+}
+
+.error {
+   background-color: red;
+    list-style-type: none;
+}
