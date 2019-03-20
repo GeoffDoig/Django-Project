@@ -8,7 +8,7 @@
 
 {% block content %}
     <p>Please enter your username / email address and password</p>
-    <p>If you don't have an account <a href="{% url 'registration' %}">Sign Up here</a></p>
+    <p>Don't have an account? You can <a href="{% url 'registration' %}">Sign Up here</a></p>
     <form method="POST">
         {% csrf_token %}
         {{ login_form | as_bootstrap }}
