@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_title %}Issue Page{% endblock %}
+
+{% block page_heading %}This Issue{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <span>{{ issue.title }}</span>
+            <span>{{ issue.get_category_display }}</span>
+            <span>{{ issue.votes }}</span>
+            <span>{{ issue.get_status_display }}</span>
+        </div>
+        <div class="card-body">
+            <p>{{ issue.description }}</p>
+            <span>{{ issue.username }}</span>
+            <span>{{ issue.reported_date }}</span>
+        </div>
+    </div>
+    <a href="{% url 'issues' %}" class="btn btn-primary">Back</a>
+{% endblock %}

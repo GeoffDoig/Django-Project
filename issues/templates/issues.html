@@ -5,5 +5,21 @@
 {% block page_heading %}Issues{% endblock %}
 
 {% block content %}
-    <p>List of all issues will be displayed here</p>
+    {% for issue in issues %}
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <span><a href="{% url 'show_issue' issue.id %}">{{ issue.title }}</a></span>
+                    <span>{{ issue.get_category_display }}</span>
+                    <span>{{ issue.votes }}</span>
+                    <span>{{ issue.get_status_display }}</span>
+                </div>
+                <div class="card-body">
+                    <span>{{ issue.username }}</span>
+                    <span>{{ issue.reported_date }}</span>
+                    <span>{{ issue.comments }}</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
