@@ -17,9 +17,12 @@
                 <div class="card-body">
                     <span>{{ issue.username }}</span>
                     <span>{{ issue.reported_date }}</span>
-                    <span>{{ issue.comments }}</span>
+                    <span>{{ issue.comments_count }}</span>
                 </div>
             </div>
         </div>
     {% endfor %}
+    <div class="row">
+        <a class="btn btn-primary" href="{% url 'new_issue' %}">Create New Issue</a>
+    </div>
 {% endblock %}

@@ -4,6 +4,8 @@
 
 {% block page_heading %}This Issue{% endblock %}
 
+{% load bootstrap_tags %}
+
 {% block content %}
     <div class="card">
         <div class="card-header">
@@ -17,6 +19,21 @@
             <span>{{ issue.username }}</span>
             <span>{{ issue.reported_date }}</span>
         </div>
+        <!--{% if issue.comments_count > 0 %}-->
+        <div class="card-footer">
+            <p>{{ issue.comments }}</p>
+        </div>
+        <!--{% endif %}-->
     </div>
+    {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | as_bootstrap }}
+            <button class="btn btn-success" type="submit">Add Comment</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'registration' %}" class="btn btn-success">Sign Up here</a> for an account to join this discussion</p>
+        <p>Already have an account? <a href="{% url 'login' %}">Log In here</a> to comment</p>
+    {% endif %}
     <a href="{% url 'issues' %}" class="btn btn-primary">Back</a>
 {% endblock %}

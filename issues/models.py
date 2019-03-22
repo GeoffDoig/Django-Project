@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Issue(models.Model):
@@ -18,11 +19,11 @@ class Issue(models.Model):
     description = models.TextField()
     screenshot = models.ImageField(upload_to="images", blank=True)
     reported_date = models.DateTimeField(auto_now_add=True)
-    username = models.CharField(max_length=30)
+    username = models.CharField(max_length=20)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="O")
     category = models.CharField(max_length=1, choices=CATEGORY_CHOICES, default="C")
     votes = models.IntegerField(default=0)
-    comments = models.IntegerField(default=0)
+    comments = models.TextField(blank=True, null=True)
     
     def __str__(self):
         return self.title
