@@ -19,11 +19,12 @@
             <span>{{ issue.username }}</span>
             <span>{{ issue.reported_date }}</span>
         </div>
-        <!--{% if issue.comments_count > 0 %}-->
         <div class="card-footer">
-            <p>{{ issue.comments }}</p>
+            {% for entry in entries %}
+                <p>{{ loop.index }}. {{ entry.username }} on {{ entry.username }} added</p>
+                <p>{{ entry.comment }}</p>
+            {% endfor %}
         </div>
-        <!--{% endif %}-->
     </div>
     {% if user.is_authenticated %}
         <form method="POST">

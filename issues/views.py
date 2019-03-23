@@ -3,28 +3,35 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Issue
+from .models import Issue, Comments
 from .forms import CommentsForm, NewIssueForm
 
 # Create your views here.
+entries = []
+
 def get_issues(request):
     """ Display all issues ordered by date reported """
     issues = Issue.objects.all().order_by("reported_date")
-    return render(request, "issues.html", {"issues": issues})
+    comments = entries.count(entries)
+    return render(request, "issues.html", {"issues": issues, "comments": comments})
     
 def show_issue(request, pk):
     """ Display full details of a single issue """
     issue = get_object_or_404(Issue, pk=pk)
-    user = User.objects.get(email=request.user.email)
-    if request.method == "POST":
-        form = CommentsForm(request.POST, initial={"username": user, "comment_date": timezone.now})
-        if form.is_valid():
-            form = issue.comments
-            issue.save(update_fields=["comments"])
-            return redirect(reverse(get_issues))
+    if request.user.is_authenticated:
+        user = User.objects.get(email=request.user.email)
+        if request.method == "POST":
+            form = CommentsForm(request.POST, initial={"username": user})
+            if form.is_valid():
+                entries.append(form)
+                form.save()
+                form = CommentsForm(initial={"username": user})
+                return render(request, "issuedetail.html", {"issue": issue, "form": form, "entries": entries})
+        else:
+            form = CommentsForm(initial={"username": user})
+            return render(request, "issuedetail.html", {"issue": issue, "form": form})
     else:
-        form = CommentsForm(initial={"username": user, "comment_date": timezone.now})
-    return render(request, "issuedetail.html", {"issue": issue, "form": form})
+        return render(request, "issuedetail.html", {"issue": issue})
 
 @login_required    
 def new_issue(request):

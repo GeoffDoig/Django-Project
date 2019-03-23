@@ -1,11 +1,12 @@
 from django import forms
-from .models import Issue
+from .models import Issue, Comments
 
-class CommentsForm(forms.Form):
+class CommentsForm(forms.ModelForm):
     """ Form for users to add their comments to specific issues """
-    comment = forms.CharField(widget=forms.Textarea, label="Add a Comment")
-    username = forms.CharField(max_length=30, disabled=True)
-    comment_date = forms.DateTimeField(disabled=True)
+    class Meta:
+        model = Comments
+        fields = ("comment", "username")
+        widgets = {"username": forms.TextInput(attrs={'readonly': True})}
     
 class NewIssueForm(forms.ModelForm):
     """ Form for user to create new issues on the website """
