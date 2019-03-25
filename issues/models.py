@@ -26,10 +26,10 @@ class Issue(models.Model):
         return self.title
         
 class Comments(models.Model):
-    comments = models.ForeignKey(Issue, null=True)
+    issue = models.ForeignKey(Issue, null=True)
     comment = models.TextField()
     username = models.CharField(max_length=20)
     comment_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return "{0}-{1}".format(self.comments, self.username)
+        return "{0}-{1}".format(self.username, self.comment_date)

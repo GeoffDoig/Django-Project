@@ -7,22 +7,28 @@
 {% load bootstrap_tags %}
 
 {% block content %}
-    <div class="card">
-        <div class="card-header">
-            <span>{{ issue.title }}</span>
-            <span>{{ issue.get_category_display }}</span>
-            <span>{{ issue.votes }}</span>
-            <span>{{ issue.get_status_display }}</span>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <span>{{ issue.title }}</span>
+                <span>{{ issue.get_category_display }}</span>
+                <span>{{ issue.votes }}</span>
+                <span>{{ issue.get_status_display }}</span>
+            </div>
+            <div class="card-body">
+                <p>{{ issue.description }}</p>
+                <span>{{ issue.username }}</span>
+                <span>{{ issue.reported_date }}</span>
+            </div>
         </div>
-        <div class="card-body">
-            <p>{{ issue.description }}</p>
-            <span>{{ issue.username }}</span>
-            <span>{{ issue.reported_date }}</span>
-        </div>
-        <div class="card-footer">
+        <div class="card">
             {% for entry in entries %}
-                <p>{{ loop.index }}. {{ entry.username }} on {{ entry.username }} added</p>
-                <p>{{ entry.comment }}</p>
+                <div class="card-header">
+                    <p>{{ entry.id }}. {{ entry.username }} on {{ entry.comment_date }} commented</p>
+                </div>
+                <div class="card-body">
+                    <p>{{ entry.comment }}</p>
+                </div>
             {% endfor %}
         </div>
     </div>
