@@ -50,3 +50,8 @@ def new_issue(request):
         form = NewIssueForm(initial={"username": user})
     return render(request, "newissue.html", {"form": form})
     
+def display_screenshot(request, pk):
+    """ Display the relevant screenshot for a requested issue """
+    issue = get_object_or_404(Issue, pk=pk)
+    screenshot = issue.screenshot
+    return render(request, "screenshot.html", {"screenshot": screenshot})

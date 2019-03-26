@@ -19,6 +19,7 @@
                 <p>{{ issue.description }}</p>
                 <span>{{ issue.username }}</span>
                 <span>{{ issue.reported_date }}</span>
+                <span><a href="{% url 'screenshot' issue.id %}" class="btn btn-info" target="_blank">View Screenshot</a></span>
             </div>
         </div>
         <div class="card">
