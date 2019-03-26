@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.db.models import Count
 from .models import Issue, Comments
 from .forms import CommentsForm, NewIssueForm
+#from cart.views import add_to_cart
 
 # Create your views here.
 
@@ -43,7 +44,7 @@ def new_issue(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your issue has been created successfully")
-            return redirect(get_issues)
+            return redirect("get_issues")
         else:
             messages.error(request, "Unable to create issue at this time")
     else:
@@ -55,3 +56,19 @@ def display_screenshot(request, pk):
     issue = get_object_or_404(Issue, pk=pk)
     screenshot = issue.screenshot
     return render(request, "screenshot.html", {"screenshot": screenshot})
+    
+def voting(request, pk):
+    """ Add upvotes to 'votes' field and evaluate - bugs are free, features are chargeable """
+    issue = get_object_or_404(Issue, pk=pk)
+    issue.votes +=1
+    issue.save()
+    if issue.category == "F":
+        messages.success(request, "You have successfully registered you would like this feature too!")
+        return redirect("add_to_cart", pk=pk)
+    elif issue.category == "B":
+        messages.success(request, "You have successfully registered that you have this bug too!")
+        return redirect("show_issue", pk=pk)
+    else:
+        messages.error(request, "Unable to register your interest at this time")
+    return redirect("get_issues")
+    

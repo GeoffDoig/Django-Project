@@ -19,7 +19,7 @@
                 <p>{{ issue.description }}</p>
                 <span>{{ issue.username }}</span>
                 <span>{{ issue.reported_date }}</span>
-                <span><a href="{% url 'screenshot' issue.id %}" class="btn btn-info" target="_blank">View Screenshot</a></span>
+                <span><a href="{% url 'screenshot' issue.id %}" class="btn btn-info" target="_blank"><i class="far fa-image"></i> View Screenshot</a></span>
             </div>
         </div>
         <div class="card">
@@ -34,14 +34,21 @@
         </div>
     </div>
     {% if user.is_authenticated %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form | as_bootstrap }}
-            <button class="btn btn-success" type="submit">Add Comment</button>
-        </form>
+        <p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <button class="btn btn-success" type="submit"><i class="far fa-comment-alt"></i> Add Comment</button>
+            </form>
+        </p>
+        <p>
+            <a href="{% url 'voting' issue.id %}" class="btn btn-info"><i class="far fa-thumbs-up"></i> I Agree</a>
+        </p>
     {% else %}
         <p><a href="{% url 'registration' %}" class="btn btn-success">Sign Up here</a> for an account to join this discussion</p>
         <p>Already have an account? <a href="{% url 'login' %}">Log In here</a> to comment</p>
     {% endif %}
-    <a href="{% url 'issues' %}" class="btn btn-primary">Back</a>
+    <div class="row">
+        <a href="{% url 'issues' %}" class="btn btn-primary">Back</a>
+    </div>
 {% endblock %}

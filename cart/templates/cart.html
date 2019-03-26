@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block page_title %}Cart Page{% endblock %}
+
+{% block page_heading %}Cart{% endblock %}
+
+{% block content %}
+    <div class="row row-flex">
+        {% for item in cart_items %}
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <span>{{ item.issue.title }}</span>
+                        <span>{{ item.issue.get_category_display }}</span>
+                        <span>{{ item.issue.votes }}</span>
+                        <span>{{ item.issue.get_status_display }}</span>
+                    </div>
+                    <div class="card-body">
+                        <span>{{ item.issue.username }}</span>
+                        <span>{{ item.issue.reported_date }}</span>
+                        <span>{{ item.issue.count }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>Total</p>
+            <p><span><i class="fas fa-pound-sign"></i></span> {{ total }}</p>
+            <a href="#" class="btn btn-success"><i class="fas fa-check-square"></i> Checkout</a>
+        </div>
+    </div>
+{% endblock %}

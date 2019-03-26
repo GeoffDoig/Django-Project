@@ -37,10 +37,10 @@
                             <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">
+                            <a class="nav-link" href="{% url 'view_cart' %}">
                                 <i class="fas fa-shopping-cart"></i> Cart
-                                {% if product_count > 0 %}
-                                    <label class="badge badge-warning">{{ product_count }}</label>
+                                {% if feature_count > 0 %}
+                                    <label class="badge badge-warning">{{ feature_count }}</label>
                                 {% endif %}
                             </a>
                         </li>
