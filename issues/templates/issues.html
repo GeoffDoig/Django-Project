@@ -10,14 +10,14 @@
             <div class="card">
                 <div class="card-header">
                     <span><a href="{% url 'show_issue' issue.id %}">{{ issue.title }}</a></span>
-                    <span>{{ issue.get_category_display }}</span>
-                    <span>{{ issue.votes }}</span>
+                    <span><i class="fas fa-bug"></i> {{ issue.get_category_display }}</span>
+                    <span>{{ issue.votes }} <i class="far fa-thumbs-up"></i></span>
                     <span>{{ issue.get_status_display }}</span>
                 </div>
                 <div class="card-body">
-                    <span>{{ issue.username }}</span>
-                    <span>{{ issue.reported_date }}</span>
-                    <span>{{ issue.count }}</span>
+                    <span><i class="fas fa-user"></i> {{ issue.username }}</span>
+                    <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date }}</span>
+                    <span>{{ issue.count }} <i class="far fa-comment-alt"></i></span>
                 </div>
             </div>
         </div>

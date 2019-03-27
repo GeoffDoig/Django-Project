@@ -19,7 +19,7 @@ def logout(request):
 def login(request):
     """ Display login page """
     if request.user.is_authenticated:
-        return redirect(reverse("index"))
+        return redirect(reverse("get_issues"))
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -27,7 +27,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in!")
-                return redirect(reverse("index"))
+                return redirect(reverse("get_issues"))
             else:
                 login_form.add_error(None, "Your username or password is incorrect!")
     else:
@@ -37,7 +37,7 @@ def login(request):
 def registration(request):
     """ Display registration page """
     if request.user.is_authenticated:
-        return redirect(reverse("index"))
+        return redirect(reverse("get_issues"))
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
         if registration_form.is_valid():
