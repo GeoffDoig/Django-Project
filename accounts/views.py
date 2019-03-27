@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -14,12 +14,12 @@ def logout(request):
     """ Log the user out """
     auth.logout(request)
     messages.success(request, "You have been successfully logged out!")
-    return redirect(reverse("index"))
+    return redirect("index")
     
 def login(request):
     """ Display login page """
     if request.user.is_authenticated:
-        return redirect(reverse("get_issues"))
+        return redirect("issues")
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -27,7 +27,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in!")
-                return redirect(reverse("get_issues"))
+                return redirect("issues")
             else:
                 login_form.add_error(None, "Your username or password is incorrect!")
     else:
@@ -37,7 +37,7 @@ def login(request):
 def registration(request):
     """ Display registration page """
     if request.user.is_authenticated:
-        return redirect(reverse("get_issues"))
+        return redirect("issues")
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
         if registration_form.is_valid():

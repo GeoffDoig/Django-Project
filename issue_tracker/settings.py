@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'issues',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -136,5 +137,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.EmailAuth'
 ]
+
+STRIPE_PUBLISHABLE = os.environ.get("STRIPE_PUBLISHABLE")
+STRIPE_SECRET = os.environ.get("STRIPE_SECRET")
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

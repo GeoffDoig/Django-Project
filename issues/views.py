@@ -43,7 +43,7 @@ def new_issue(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your issue has been created successfully")
-            return redirect("get_issues")
+            return redirect("issues")
         else:
             messages.error(request, "Unable to create issue at this time")
     else:
@@ -69,5 +69,5 @@ def voting(request, pk):
         return redirect("show_issue", pk=pk)
     else:
         messages.error(request, "Unable to register your interest at this time")
-    return redirect("get_issues")
+    return redirect("issues")
     
