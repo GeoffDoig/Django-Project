@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}New Blog Page{% endblock %}
+
+{% block page_heading %}New Post{% endblock %}
+
+{% load bootstrap_tags %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form | as_bootstrap }}
+        <button class="btn btn-info" type="submit"><i class="fas fa-share-square"></i> Post</button>
+    </form>
+{% endblock %}
