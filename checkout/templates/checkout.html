@@ -29,25 +29,30 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <p>Total</p>
-            <p><span><i class="fas fa-pound-sign"></i></span> {{ total }}</p>
+            <p>Total: <span><i class="fas fa-pound-sign"></i></span> {{ total }}</p>
         </div>
     </div>
     <form role="form" method="POST" id="payment_form" action="{% url 'checkout' %}">
     {% csrf_token %}
         <fieldset>
-            <legend>Payment Details</legend>
             <div id="credit-card-errors" style="display: none">
                 <div class="alert-message block-message error" id="stripe-error-message"></div>
             </div>
-            <div class="col-md-6">
-                {{ order_form | as_bootstrap }}
+            <div class="row">
+                <div class="col-md-6">
+                    <legend>Personal Details</legend>
+                    {{ order_form | as_bootstrap }}
+                </div>
+                <div class="col-md-6">
+                    <legend>Card Details</legend>
+                    {{ payment_form | as_bootstrap }}
+                </div>
             </div>
-            <div class="col-md-6">
-                {{ payment_form | as_bootstrap }}
-            </div>
-            <div class="col-md-12">
-                <button class="btn btn-success" id="submit-payment-button" type="submit"><i class="fas fa-check-square"></i> Submit Payment</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-success" id="submit-payment-button" type="submit">
+                        <i class="fas fa-check-square"></i> Submit Payment</button>
+                </div>
             </div>
         </fieldset>
     </form>

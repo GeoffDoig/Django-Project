@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from .models import UserProfile
 
 class UserLoginForm(forms.Form):
     """ Form to log users in """
@@ -31,3 +32,9 @@ class UserRegistrationForm(UserCreationForm):
         if password1 != password2:
             raise ValidationError(u"Passwords must match!")
         return password2
+        
+class ProfilePicForm(forms.ModelForm):
+    """ Form for users to upload a profile picture """
+    class Meta:
+        model = UserProfile
+        fields = ["avatar"]

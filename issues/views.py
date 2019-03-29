@@ -3,26 +3,26 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Count
-from .models import Issue, Comments
+from .models import Issue, Comment
 from .forms import CommentsForm, NewIssueForm
 
 # Create your views here.
 
 def get_issues(request):
     """ Display all issues ordered by date reported """
-    issues = Issue.objects.order_by("reported_date").annotate(count=Count("comments"))
+    issues = Issue.objects.order_by("reported_date").annotate(count=Count("comment"))
     return render(request, "issues.html", {"issues": issues})
     
 def show_issue(request, pk):
     """ Display full details of a single issue """
     issue = get_object_or_404(Issue, pk=pk)
-    entries = issue.comments_set.all()
+    entries = issue.comment_set.all()
     if request.user.is_authenticated:
         user = User.objects.get(email=request.user.email)
         if request.method == "POST":
             form = CommentsForm(request.POST, initial={"username": user})
             if form.is_valid():
-                Comments.objects.create(comment=request.POST["comment"], username=request.POST["username"], issue=issue)
+                Comment.objects.create(comment=request.POST["comment"], username=request.POST["username"], issue=issue)
                 form = CommentsForm(initial={"username": user})
                 messages.success(request, "You have successfully commented on this issue")
                 return render(request, "issuedetail.html", {"issue": issue, "form": form, "entries": entries})

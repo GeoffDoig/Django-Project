@@ -32,12 +32,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'issues' %}"><i class="fas fa-clipboard-list"></i> Issues</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'get_posts' %}"><i class="fas fa-blog"></i> Blog</a>
+                    </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'get_posts' %}"><i class="fas fa-blog"></i> Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'view_cart' %}">

@@ -5,5 +5,36 @@
 {% block page_heading %}{{ user }}'s Profile{% endblock %}
 
 {% block content %}
-    <p>{{ profile.email }}</p>
+    <div class="row">
+        <legend>Personal Details</legend>
+        <div class="col-md-3 col-sm 4">
+            <div class="row">
+                <img src="{{ user.userprofile.avatar.url }}" alt="No Profile Picture" height="175" width="175">
+            </div>
+            <div class="row">
+                <a href="#" class="btn btn-primary">Add a Profile Picture</a>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-8">
+            <p>Your Name: {{ user_order.full_name }}</p>
+            <p>Your Email Address: {{ user.email }}</p>
+            <p>Your Address Line 1: {{ user_order.street_address1 }}</p>
+            <p>Your Address Line 2: {{ user_order.street_address2 }}</p>
+            <p>Your Town / City: {{ user_order.town_or_city }}</p>
+            <p>Your County: {{ user_order.county }}</p>
+            <p>Your Country: {{ user_order.country }}</p>
+            <p>Your PostCode: {{ user_order.postcode }}</p>
+            <p>Your Phone Number: {{ user_order.phone_number }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <legend>Your User Stats</legend>
+        <div class="col-md-10 col-md-offset-1">
+            <p>You have added {{ num_user_blogposts }} posts to the blog</p>
+            <p>You have created {{ num_user_bugs }} issues as bugs on the Issue Tracker</p>
+            <p>You have created {{ num_user_features }} issues as features on the Issue Tracker</p>
+            <p>You have added {{ user_bug_comments }} comments to bug issues</p>
+            <p>You have added {{ user_feature_comments }} comments to feature issues</p>
+        </div>
+    </div>
 {% endblock %}

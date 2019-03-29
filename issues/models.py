@@ -25,8 +25,9 @@ class Issue(models.Model):
     def __str__(self):
         return self.title
         
-class Comments(models.Model):
-    issue = models.ForeignKey(Issue, null=True)
+class Comment(models.Model):
+    """ Fields required for a single comment on a specified issue """
+    issue = models.ForeignKey(Issue, null=False, on_delete=models.CASCADE)
     comment = models.TextField()
     username = models.CharField(max_length=20)
     comment_date = models.DateTimeField(auto_now_add=True)

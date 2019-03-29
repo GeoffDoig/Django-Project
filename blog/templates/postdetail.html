@@ -7,7 +7,8 @@
 {% block content %}
     <div class="row">
         <div class="col-md-2 col-sm-3 text-center">
-            <p><span class="boldtext">Author: </span>{{ post.username }}</p>
+            <img src="{{ post.author.userprofile.avatar.url }}" alt="No Profile Picture" height="175" width="175">
+            <p><span class="boldtext">Author: </span>{{ post.author }}</p>
         </div>
         <div class="col-md-10 col-sm-9">
             <h3>{{ post.title }}</h3>

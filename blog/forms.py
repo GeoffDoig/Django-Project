@@ -5,5 +5,5 @@ class BlogPostForm(forms.ModelForm):
     """ Form for users to create blog posts """
     class Meta:
         model = Post
-        fields = ("title", "content", "username", "tag")
-        widgets = {"username": forms.TextInput(attrs={'readonly': True})}
+        fields = ["title", "content", "author", "tag"]
+        widgets = {"author": forms.TextInput(attrs={'readonly': True})}
