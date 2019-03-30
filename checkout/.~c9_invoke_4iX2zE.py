@@ -24,3 +24,40 @@ class OrderLineItem(models.Model):
     
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.order.full_name, self.issue.title)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

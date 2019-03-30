@@ -8,7 +8,7 @@
     {% for post in posts %}
         <div class="row">
             <div class="col-md-2 col-sm-3 text-center">
-                <img src="{{ post.author.userprofile.avatar.url }}" alt="No Profile Picture" height="175" width="175">
+                <img src="{{ post.avatar }}" alt="No Profile Picture" height="175" width="175">
                 <p><span class="boldtext">Author: </span>{{ post.author }}</p>
             </div>
             <div class="col-md-10 col-sm-9">

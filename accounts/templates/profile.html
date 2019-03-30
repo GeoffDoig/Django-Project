@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %}{{ user }}'s Profile Page{% endblock %}
 
 {% block page_heading %}{{ user }}'s Profile{% endblock %}
@@ -16,16 +18,23 @@
             </div>
         </div>
         <div class="col-md-9 col-sm-8">
-            <p>Your Name: {{ user_order.full_name }}</p>
+            <p>Your Name: {{ user.userprofile.full_name }}</p>
             <p>Your Email Address: {{ user.email }}</p>
-            <p>Your Address Line 1: {{ user_order.street_address1 }}</p>
-            <p>Your Address Line 2: {{ user_order.street_address2 }}</p>
-            <p>Your Town / City: {{ user_order.town_or_city }}</p>
-            <p>Your County: {{ user_order.county }}</p>
-            <p>Your Country: {{ user_order.country }}</p>
-            <p>Your PostCode: {{ user_order.postcode }}</p>
-            <p>Your Phone Number: {{ user_order.phone_number }}</p>
+            <p>Your Address Line 1: {{ user.userprofile.street_address1 }}</p>
+            <p>Your Address Line 2: {{ user.userprofile.street_address2 }}</p>
+            <p>Your Town / City: {{ user.userprofile.town_or_city }}</p>
+            <p>Your County: {{ user.userprofile.county }}</p>
+            <p>Your Country: {{ user.userprofile.country }}</p>
+            <p>Your PostCode: {{ user.userprofile.postcode }}</p>
+            <p>Your Phone Number: {{ user.userprofile.phone_number }}</p>
         </div>
+    </div>
+    <div class="row">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ update_form | as_bootstrap }}
+            <button type="submit" class="btn btn-success"><i class="fas fa-check-square"></i> Update Profile</button>
+        </form>
     </div>
     <div class="row">
         <legend>Your User Stats</legend>

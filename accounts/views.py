@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import UserLoginForm, UserRegistrationForm, ProfilePicForm
+from .forms import UserLoginForm, UserRegistrationForm, ProfileUpdateForm
 from issues.models import Issue, Comment
 from blog.models import Post
 from checkout.models import Order
+
 
 # Create your views here.
 def index(request):
@@ -49,6 +50,7 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered")
+                return redirect("issues")
             else:
                 messages.error(request, "Unable to register your account at this time")
     else:    
@@ -59,20 +61,25 @@ def registration(request):
 def user_profile(request):
     """ Display the user's profile page """
     user = User.objects.get(email=request.user.email)
-    user_order = Order.objects.filter(user=user).first()
-    user_blogposts = Post.objects.filter(author=user)
-    num_user_blogposts = user_blogposts.count()
-    bug_comments = Comment.objects.filter(issue__category="B", username=user)
-    user_bug_comments = bug_comments.count()
-    feature_comments = Comment.objects.filter(issue__category="F", username=user)
-    user_feature_comments = feature_comments.count()
-    user_bugs = Issue.objects.filter(category="B", username=user)
-    num_user_bugs = user_bugs.count()
-    user_features = Issue.objects.filter(category="F", username=user)
-    num_user_features = user_features.count()
+    if request.method == "POST":
+        update_form = ProfileUpdateForm(request.POST, request.FILES, instance=user.userprofile)
+        if update_form.is_valid:
+            update_form.save()
+            messages.success(request, "You have successfully updated your profile")
+            return redirect("profile")
+        else:
+            messages.error(request, "Unable to update your profile at this time")
+    else:
+        update_form = ProfileUpdateForm(instance=user.userprofile)
+    
+    num_user_blogposts = Post.objects.filter(author=user).count()
+    user_bug_comments = Comment.objects.filter(issue__category="B", username=user).count()
+    user_feature_comments = Comment.objects.filter(issue__category="F", username=user).count()
+    num_user_bugs = Issue.objects.filter(category="B", username=user).count()
+    num_user_features = Issue.objects.filter(category="F", username=user).count()
     args = {
         "user": user,
-        "user_order": user_order,
+        "update_form": update_form,
         "num_user_blogposts": num_user_blogposts,
         "user_bug_comments": user_bug_comments,
         "user_feature_comments": user_feature_comments,

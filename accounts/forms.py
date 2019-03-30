@@ -33,8 +33,8 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError(u"Passwords must match!")
         return password2
         
-class ProfilePicForm(forms.ModelForm):
-    """ Form for users to upload a profile picture """
+class ProfileUpdateForm(forms.ModelForm):
+    """ Form for users to update profile details """
     class Meta:
         model = UserProfile
-        fields = ["avatar"]
+        fields = ["full_name", "street_address1", "street_address2", "town_or_city", "county", "country", "postcode", "phone_number", "avatar"]

@@ -7,7 +7,7 @@
 {% block content %}
     <div class="row">
         <div class="col-md-2 col-sm-3 text-center">
-            <img src="{{ post.author.userprofile.avatar.url }}" alt="No Profile Picture" height="175" width="175">
+            <img src="{{ post.avatar }}" alt="No Profile Picture" height="175" width="175">
             <p><span class="boldtext">Author: </span>{{ post.author }}</p>
         </div>
         <div class="col-md-10 col-sm-9">
@@ -19,7 +19,6 @@
                     <p><span class="boldtext">Views: </span>{{ post.views }}</p>
                     <p><span class="boldtext">Tag: </span>{{ post.tag }}</p>
                     <a href="{% url 'get_posts' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Blog</a>
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-success"><i class="fas fa-edit"></i> Edit Post</a>
                 </div>
             </div>
         </div>

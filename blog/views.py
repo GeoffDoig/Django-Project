@@ -20,19 +20,17 @@ def post_detail(request, pk):
     return render(request, "postdetail.html", {"post": post})
 
 @login_required        
-def create_or_edit_post(request, pk = None):
-    """ Create a view that allows the user to create or edit a post depending
-        if the Post_id is null or not """
-    post = get_object_or_404(Post, pk=pk) if pk else None
+def create_post(request):
+    """ Allow the user to create a new blog post """
     user = User.objects.get(email=request.user.email)
     if request.method == "POST":
-        form = BlogPostForm(request.POST, initial={"author": user}, instance=post)
+        form = BlogPostForm(request.POST, request.FILES, initial={"avatar": user.userprofile.avatar.url})
         if form.is_valid():
             post = form.save()
             messages.success(request, "You have posted successfully")
-            return redirect(post_detail, post.pk)
+            return redirect("get_posts")
         else:
             messages.error(request, "Unable to post at this time")
     else:
-        form = BlogPostForm(initial={"author": user}, instance=post)
+        form = BlogPostForm(initial={"avatar": user.userprofile.avatar.url})
     return render(request, "blogpostform.html", {"form": form})

@@ -14,5 +14,4 @@ class MakePaymentForm(forms.Form):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ["user", "full_name", "street_address1", "street_address2", "town_or_city", "county", "country", "postcode", "phone_number"]
-        widgets = {"user": forms.TextInput(attrs={'readonly': True})}
+        fields = ["full_name", "street_address1", "street_address2", "town_or_city", "county", "country", "postcode", "phone_number"]
