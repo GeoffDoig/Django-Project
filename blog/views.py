@@ -24,13 +24,16 @@ def create_post(request):
     """ Allow the user to create a new blog post """
     user = User.objects.get(email=request.user.email)
     if request.method == "POST":
-        form = BlogPostForm(request.POST, request.FILES, initial={"avatar": user.userprofile.avatar.url})
+        form = BlogPostForm(request.POST)
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
+            post.author = user
+            post.avatar = user.userprofile.avatar.url
+            post.save()
             messages.success(request, "You have posted successfully")
             return redirect("get_posts")
         else:
             messages.error(request, "Unable to post at this time")
     else:
-        form = BlogPostForm(initial={"avatar": user.userprofile.avatar.url})
+        form = BlogPostForm()
     return render(request, "blogpostform.html", {"form": form})
