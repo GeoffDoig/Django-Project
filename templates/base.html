@@ -62,23 +62,29 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h1>{% block page_heading %}{% endblock %}</h1>
+    <main class="container">
+        <div class="row justify-content-center">
+            <h1>{% block page_heading %}{% endblock %}</h1>
+        </div>
         {% if messages %}
             <div class="row">
-                <ul class="messages" id="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
+                <div class="col-md-8 offset-md-2">
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li id="messages" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         {% endif %}
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
     <footer>
         <div class="container">
-            <p>Website by Geoff Doig using Python Django Framework</p>
+            <div class="row justify-content-center">
+                <p>Website by Geoff Doig using Python Django Framework</p>
+            </div>
         </div>
     </footer>
     <!-- jQuery -->
@@ -90,6 +96,8 @@
     <!-- Latest compiled and minified Bootstrap Javascript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Custom js -->
+    <script src="{% static 'js/custom.js' %}"></script>
     {% block stripe_js %}
     {% endblock %}
 </body>

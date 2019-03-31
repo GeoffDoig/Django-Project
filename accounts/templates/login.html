@@ -4,16 +4,27 @@
 
 {% block page_title %}Login Page{% endblock %}
 
-{% block page_heading %}User Login{% endblock %}
+{% block page_heading %}Login{% endblock %}
 
 {% block content %}
-    <p>Please enter your username / email address and password</p>
-    <p>Don't have an account? You can <a href="{% url 'registration' %}">Sign Up here</a></p>
-    <form method="POST">
-        {% csrf_token %}
-        {{ login_form | as_bootstrap }}
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    
-    <p><a href="{% url 'password_reset' %}">Forgot Password</a></p>
+    <div class="row justify-content-center">
+        <p>Please enter your username / email address and password</p>
+    </div>
+    <div class="row justify-content-center">
+        <p>Don't have an account? You can <a href="{% url 'registration' %}">Sign Up here</a></p>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="POST">
+                {% csrf_token %}
+                {{ login_form | as_bootstrap }}
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-success btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+    </div>
 {% endblock %}

@@ -1,5 +1,4 @@
 body {
-    font-family: Arial;
     padding-top: 100px;
     background-color: #ededed;
 }
@@ -17,10 +16,6 @@ footer {
     text-decoration: underline;
 }
 
-.accountform {
-    padding-top: 20px;
-}
-
 .success {
     background-color: #28a745;
     list-style-type: none;
@@ -29,4 +24,16 @@ footer {
 .error {
    background-color: red;
     list-style-type: none;
+}
+
+.boldtext {
+    font-weight: 500;
+}
+
+#update-form {
+    display: none;
+}
+
+.card-title {
+    font-size: 1.25rem;
 }

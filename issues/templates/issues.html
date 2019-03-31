@@ -7,22 +7,29 @@
 {% block content %}
     {% for issue in issues %}
         <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <span><a href="{% url 'show_issue' issue.id %}">{{ issue.title }}</a></span>
-                    <span><i class="fas fa-bug"></i> {{ issue.get_category_display }}</span>
-                    <span>{{ issue.votes }} <i class="far fa-thumbs-up"></i></span>
-                    <span>{{ issue.get_status_display }}</span>
-                </div>
-                <div class="card-body">
-                    <span><i class="fas fa-user"></i> {{ issue.username }}</span>
-                    <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date }}</span>
-                    <span>{{ issue.count }} <i class="far fa-comment-alt"></i></span>
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row justify-content-around">
+                            <span class="card-title"><a href="{% url 'show_issue' issue.id %}">{{ issue.title }}</a></span>
+                            <span><i class="fas fa-bug"></i> {{ issue.get_category_display }}</span>
+                            <span>{{ issue.votes }} <i class="far fa-thumbs-up"></i></span>
+                            <span>{{ issue.get_status_display }}</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-around">
+                            <span><i class="fas fa-user"></i> {{ issue.username }}</span>
+                            <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date }}</span>
+                            <span>{{ issue.count }} <i class="far fa-comment-alt"></i></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <hr>
     {% endfor %}
-    <div class="row">
-        <a class="btn btn-primary" href="{% url 'new_issue' %}"><i class="fas fa-clipboard-list"></i> Create New Issue</a>
+    <div class="row justify-content-center">
+        <a class="btn btn-success btn-block" href="{% url 'new_issue' %}"><i class="fas fa-clipboard-list"></i> Create New Issue</a>
     </div>
 {% endblock %}

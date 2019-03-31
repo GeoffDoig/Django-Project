@@ -6,21 +6,17 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-2 col-sm-3 text-center">
-            <img src="{{ post.avatar }}" alt="No Profile Picture" height="175" width="175">
+        <div class="col-md-3 offset-md-1">
+            <img src="{{ post.avatar }}" alt="No Profile Picture" height="200" width="200" class="img-thumbnail">
             <p><span class="boldtext">Author: </span>{{ post.author }}</p>
         </div>
-        <div class="col-md-10 col-sm-9">
+        <div class="col-md-7 offset-md-1">
             <h3>{{ post.title }}</h3>
-            <div class="row">
-                <div class="col-xs-9">
-                    <p>{{ post.content }}</p>
-                    <p><span class="boldtext">Published On: </span>{{ post.created_date }}</p>
-                    <p><span class="boldtext">Views: </span>{{ post.views }}</p>
-                    <p><span class="boldtext">Tag: </span>{{ post.tag }}</p>
-                    <a href="{% url 'get_posts' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Blog</a>
-                </div>
-            </div>
+            <p>{{ post.content }}</p>
+            <p><span class="boldtext">Published On: </span>{{ post.created_date }}</p>
+            <p><span class="boldtext">Views: </span>{{ post.views }}</p>
+            <p><span class="boldtext">Tag: </span>{{ post.tag }}</p>
+            <a href="{% url 'get_posts' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Blog</a>
         </div>
     </div>
 {% endblock %}

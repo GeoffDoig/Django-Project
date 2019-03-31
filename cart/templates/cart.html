@@ -5,32 +5,37 @@
 {% block page_heading %}Cart{% endblock %}
 
 {% block content %}
-    <div class="row row-flex">
-        {% for item in cart_items %}
-            <div class="row">
+    {% for item in cart_items %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">
-                        <span>{{ item.issue.title }}</span>
-                        <span><i class="fas fa-bug"></i> {{ item.issue.get_category_display }}</span>
-                        <span>{{ item.issue.votes }} <i class="far fa-thumbs-up"></i></span>
-                        <span>{{ item.issue.get_status_display }}</span>
+                        <div class="row justify-content-around">
+                            <span class="card-title">{{ item.issue.title }}</span>
+                            <span><i class="fas fa-bug"></i> {{ item.issue.get_category_display }}</span>
+                            <span>{{ item.issue.votes }} <i class="far fa-thumbs-up"></i></span>
+                            <span>{{ item.issue.get_status_display }}</span>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <span><i class="fas fa-user"></i> {{ item.issue.username }}</span>
-                        <span><i class="fas fa-calendar-alt"></i> {{ item.issue.reported_date }}</span>
+                        <div class="row justify-content-around">
+                            <span><i class="fas fa-user"></i> {{ item.issue.username }}</span>
+                            <span><i class="fas fa-calendar-alt"></i> {{ item.issue.reported_date }}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <a href="{% url 'adjust_cart' item.issue.id %}" class="btn btn-danger"><i class="fas fa-window-close"></i> Remove Request</a>
-                </div>
             </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <p>Total</p>
-            <p><span><i class="fas fa-pound-sign"></i></span> {{ total }}</p>
-            <a href="{% url 'checkout' %}" class="btn btn-success"><i class="fab fa-stripe"></i> Checkout</a>
         </div>
+        <div class="row justify-content-around">
+            <a href="{% url 'adjust_cart' item.issue.id %}" class="btn btn-danger"><i class="fas fa-window-close"></i> Remove Request</a>
+            <a href="{% url 'issues' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Issues</a>
+        </div>
+        <hr>
+    {% endfor %}
+    <div class="row justify-content-center">
+        <h4>Total: <i class="fas fa-pound-sign"></i> {{ total }}</h4>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'checkout' %}" class="btn btn-success btn-block"><i class="fab fa-stripe"></i> Checkout</a>
     </div>
 {% endblock %}

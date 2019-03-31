@@ -9,50 +9,53 @@
 {% block page_heading %}Checkout{% endblock %}
 
 {% block content %}
-    <div class="row row-flex">
-        {% for item in cart_items %}
-            <div class="row">
+    {% for item in cart_items %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">
-                        <span>{{ item.issue.title }}</span>
-                        <span><i class="fas fa-bug"></i> {{ item.issue.get_category_display }}</span>
-                        <span>{{ item.issue.votes }} <i class="far fa-thumbs-up"></i></span>
-                        <span>{{ item.issue.get_status_display }}</span>
+                        <div class="row justify-content-around">
+                            <span class="card-title">{{ item.issue.title }}</span>
+                            <span><i class="fas fa-bug"></i> {{ item.issue.get_category_display }}</span>
+                            <span>{{ item.issue.votes }} <i class="far fa-thumbs-up"></i></span>
+                            <span>{{ item.issue.get_status_display }}</span>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <span><i class="fas fa-user"></i> {{ item.issue.username }}</span>
-                        <span><i class="fas fa-calendar-alt"></i> {{ item.issue.reported_date }}</span>
+                        <div class="row justify-content-around">
+                            <span><i class="fas fa-user"></i> {{ item.issue.username }}</span>
+                            <span><i class="fas fa-calendar-alt"></i> {{ item.issue.reported_date }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <p>Total: <span><i class="fas fa-pound-sign"></i></span> {{ total }}</p>
         </div>
+        <div class="row justify-content-center">
+            <a href="{% url 'view_cart' %}" class="btn btn-danger btn-block"><i class="fas fa-undo-alt"></i> Back to Cart</a>
+        </div>
+        <hr>
+    {% endfor %}
+    <div class="row justify-content-center">
+        <h4>Total: <i class="fas fa-pound-sign"></i> {{ total }}</h4>
     </div>
     <form role="form" method="POST" id="payment_form" action="{% url 'checkout' %}">
     {% csrf_token %}
-        <fieldset>
+        <fieldset class="form-group">
             <div id="credit-card-errors" style="display: none">
                 <div class="alert-message block-message error" id="stripe-error-message"></div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5 offset-md-1">
                     <legend>Personal Details</legend>
                     {{ order_form | as_bootstrap }}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <legend>Card Details</legend>
                     {{ payment_form | as_bootstrap }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-success" id="submit-payment-button" type="submit">
-                        <i class="fas fa-check-square"></i> Submit Payment</button>
-                </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-success btn-block" id="submit-payment-button" type="submit"><i class="fas fa-check-square"></i> Submit Payment</button>
             </div>
         </fieldset>
     </form>
