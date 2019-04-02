@@ -1,24 +1,27 @@
 {% extends "base.html" %}
 
-{% block page_title %}New Issues{% endblock %}
-
-{% block page_heading %}New Issue{% endblock %}
+{% block page_title %}Issue Tracker New Issue{% endblock %}
 
 {% load bootstrap_tags %}
 
 {% block content %}
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <h1>Raise New Issue</h1>
+    </div>
      <div class="row">
         <div class="col-md-8 offset-md-2">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | as_bootstrap }}
-                <div class="row justify-content-center">
+                <div class="row justify-content-center my-4">
                     <button class="btn btn-success btn-block" type="submit">Create Issue</button>
                 </div>
             </form>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center my-4">
                 <a href="{% url 'issues' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Issues</a>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

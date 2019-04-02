@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
-{% block page_title %}Issues Page{% endblock %}
-
-{% block page_heading %}Issues{% endblock %}
+{% block page_title %}Issue Tracker Issues{% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <h1>Issues</h1>
+    </div>
     {% for issue in issues %}
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <div class="card">
+                <div class="card {{ issue.status }}">
                     <div class="card-header">
                         <div class="row justify-content-around">
                             <span class="card-title"><a href="{% url 'show_issue' issue.id %}">{{ issue.title }}</a></span>
@@ -30,6 +32,7 @@
         <hr>
     {% endfor %}
     <div class="row justify-content-center">
-        <a class="btn btn-success btn-block" href="{% url 'new_issue' %}"><i class="fas fa-clipboard-list"></i> Create New Issue</a>
+        <a class="btn btn-success" href="{% url 'new_issue' %}"><i class="fas fa-clipboard-list"></i> Create New Issue</a>
     </div>
+</div>
 {% endblock %}

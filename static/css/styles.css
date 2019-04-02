@@ -1,19 +1,25 @@
 body {
-    padding-top: 100px;
+    padding-top: 56px;
     background-color: #ededed;
+    color: #003366;
 }
 
-footer {
-    margin-top: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    border-top: 1px solid #ededed;
-    color: #A9A9A9;
+.navbar {
+    background-color: #003366;
 }
 
 .nav-link:hover {
     color: #ffffff;
     text-decoration: underline;
+}
+
+#headline {
+    background-image: url(/media/headline.jpg);
+    background-repeat: space;
+    height: auto;
+    width: auto;
+    background-color: #003366;
+    color: #ffffff;
 }
 
 .success {
@@ -26,6 +32,25 @@ footer {
     list-style-type: none;
 }
 
+.O {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.P {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+.F {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.comment {
+    border-color: #003366;
+}
+
 .boldtext {
     font-weight: 500;
 }
@@ -34,6 +59,35 @@ footer {
     display: none;
 }
 
+#btn1 {
+    background-color: green;
+}
+
+#btn2 {
+    background-color: yellowgreen;
+}
+
+#btn3 {
+    background-color: blue;
+}
+
+#btn4 {
+    background-color: cyan;
+}
+
+#btn5 {
+    background-color: maroon;
+}
+
 .card-title {
     font-size: 1.25rem;
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top: 1px solid #ededed;
+    background-color: #003366;
+    color: #ffffff;
 }

@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
-{% block page_title %}Cart Page{% endblock %}
-
-{% block page_heading %}Cart{% endblock %}
+{% block page_title %}Issue Tracker Cart{% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <h1>Cart</h1>
+    </div>
     {% for item in cart_items %}
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <div class="card">
+                <div class="card {{ item.issue.status }}">
                     <div class="card-header">
                         <div class="row justify-content-around">
                             <span class="card-title">{{ item.issue.title }}</span>
@@ -26,16 +28,17 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-around">
+        <div class="row justify-content-around my-4">
             <a href="{% url 'adjust_cart' item.issue.id %}" class="btn btn-danger"><i class="fas fa-window-close"></i> Remove Request</a>
             <a href="{% url 'issues' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Issues</a>
         </div>
         <hr>
     {% endfor %}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center my-4">
         <h4>Total: <i class="fas fa-pound-sign"></i> {{ total }}</h4>
     </div>
-    <div class="row justify-content-center">
-        <a href="{% url 'checkout' %}" class="btn btn-success btn-block"><i class="fab fa-stripe"></i> Checkout</a>
+    <div class="row justify-content-center my-4">
+        <a href="{% url 'checkout' %}" class="btn btn-success"><i class="fab fa-stripe"></i> Checkout</a>
     </div>
+</div>
 {% endblock %}

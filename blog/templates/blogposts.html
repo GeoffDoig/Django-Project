@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
-{% block page_title %}Blog Page{% endblock %}
-
-{% block page_heading %}Blog{% endblock %}
+{% block page_title %}Issue Tracker Blog{% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <h1>Blog</h1>
+    </div>
     {% for post in posts %}
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-md-3 offset-md-1">
                 <img src="{{ post.avatar }}" alt="No Profile Picture" height="200" width="200" class="img-thumbnail">
-                <p><span class="boldtext">Author: </span>{{ post.author }}</p>
+                <p class="mt-4"><span class="boldtext">Author: </span>{{ post.author }}</p>
             </div>
             <div class="col-md-7 offset-md-1">
                 <h3>{{ post.title }}</h3>
@@ -22,7 +24,8 @@
         </div>
         <hr>
     {% endfor %}
-    <div class="row justify-content-center">
-        <a href="{% url 'new_post' %}" class="btn btn-success btn-block"><i class="far fa-envelope-open"></i> Create New Post</a>
+    <div class="row justify-content-center my-4">
+        <a href="{% url 'new_post' %}" class="btn btn-success"><i class="far fa-envelope-open"></i> Create New Post</a>
     </div>
+</div>
 {% endblock %}
