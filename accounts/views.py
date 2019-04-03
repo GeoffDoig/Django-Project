@@ -6,9 +6,8 @@ from .forms import UserLoginForm, UserRegistrationForm, ProfileUpdateForm
 from issues.models import Issue, Comment
 from blog.models import Post
 from checkout.models import Order
-import matplotlib.pyplot as plt
-import io
-import urllib, base64
+import matplotlib.pyplot as plt, mpld3
+import jinja2
 
 # Create your views here.
 
@@ -20,19 +19,14 @@ def index(request):
     bug_comments = Comment.objects.filter(issue__category="B").count()
     feature_comments = Comment.objects.filter(issue__category="F").count()
     
+    fig1 = plt.figure()
     frequency = [blogposts, bug_comments, feature_comments, bug_issues, feature_issues]
     activities = ["Blog Posts", "Bug Comments", "Feature\nComments", "Bugs Raised", "Features Requested"]
     colors = ["maroon", "blue", "cyan", "green", "yellowgreen"]
     plt.pie(frequency, labels=activities, colors=colors, startangle=90, autopct="%1.1f%%", shadow=True)
     plt.title("Site Activities")
-    
-    fig = plt.gcf()
-    buf = io.BytesIO()
-    fig.savefig(buf, format='png')
-    buf.seek(0)
-    string = base64.b64encode(buf.read())
-    uri = 'data:image/png;base64,' + urllib.parse.quote(string)
-    return render(request, "index.html", {"pie_chart": uri})
+    pie_chart = mpld3.fig_to_html(fig1)
+    return render(request, "index.html", {"pie_chart": pie_chart})
 
 def logout(request):
     """ Log the user out """
@@ -97,21 +91,14 @@ def user_profile(request):
     num_user_bugs = Issue.objects.filter(category="B", username=user).count()
     num_user_features = Issue.objects.filter(category="F", username=user).count()
     
-    
+    fig2 = plt.figure()
     x = [1, 2, 3, 4, 5]
     y = [num_user_bugs, num_user_features, user_bug_comments, user_feature_comments, num_user_blogposts]
     plt.bar(x, y, color=["green", "yellowgreen", "blue", "cyan", "maroon"])
     plt.xlabel("Activity")
     plt.ylabel("Frequency")
     plt.title("Your Stats")
-    
-    fig = plt.gcf()
-    buf = io.BytesIO()
-    fig.savefig(buf, format='png')
-    buf.seek(0)
-    string = base64.b64encode(buf.read())
-    uri = 'data:image/png;base64,' + urllib.parse.quote(string)
-        
+    bar_chart = mpld3.fig_to_html(fig2)
     
     args = {
         "user": user,
@@ -121,6 +108,6 @@ def user_profile(request):
         "user_feature_comments": user_feature_comments,
         "num_user_bugs": num_user_bugs,
         "num_user_features": num_user_features,
-        "bar_chart": uri
+        "bar_chart": bar_chart
     }
     return render(request, "profile.html", args)
