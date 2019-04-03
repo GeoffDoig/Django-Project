@@ -23,13 +23,19 @@ body {
 }
 
 .success {
-    background-color: #28a745;
+    color: #28a745;
+    border-color: #28a745;
+    background-color: #d4edda;
     list-style-type: none;
+    text-align: center;
 }
 
 .error {
-   background-color: red;
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: #f8d7da;
     list-style-type: none;
+    text-align: center;
 }
 
 .O {

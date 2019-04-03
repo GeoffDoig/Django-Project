@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
     <!-- Custom css -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
+<body class="d-flex flex-column h-100">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark pb-3">
         <div class="container">
@@ -62,22 +62,11 @@
             </div>
         </div>
     </nav>
-    <main>
-        {% if messages %}
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li id="messages" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        {% endif %}
+    <main class="flex-shrink-0">
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
+    <footer class="footer mt-auto py-3">
         <div class="container">
             <div class="row justify-content-center">
                 <p>Website by Geoff Doig using Python Django Framework</p>
