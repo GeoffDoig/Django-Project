@@ -6,6 +6,8 @@ from .forms import UserLoginForm, UserRegistrationForm, ProfileUpdateForm
 from issues.models import Issue, Comment
 from blog.models import Post
 from checkout.models import Order
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt, mpld3
 import jinja2
 
