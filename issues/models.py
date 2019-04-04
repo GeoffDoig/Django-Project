@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class Issue(models.Model):
     """ Fields required for a single issue reported """
     STATUS_CHOICES = (
@@ -9,7 +9,6 @@ class Issue(models.Model):
         ("F", "Fixed"),
         )
     CATEGORY_CHOICES = (
-        ("C", "Category"),
         ("B", "Bug"),
         ("F", "Feature"),
         )
@@ -18,19 +17,22 @@ class Issue(models.Model):
     screenshot = models.ImageField(upload_to="images", blank=True)
     reported_date = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=20)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="O")
-    category = models.CharField(max_length=1, choices=CATEGORY_CHOICES, default="C")
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES,
+                              default="O")
+    category = models.CharField(max_length=1, choices=CATEGORY_CHOICES,
+                                default="B")
     votes = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return self.title
-        
+
+
 class Comment(models.Model):
     """ Fields required for a single comment on a specified issue """
     issue = models.ForeignKey(Issue, null=False, on_delete=models.CASCADE)
     comment = models.TextField()
     username = models.CharField(max_length=20)
     comment_date = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return "{0}-{1}".format(self.username, self.comment_date)

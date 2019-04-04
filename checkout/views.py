@@ -8,9 +8,9 @@ from .forms import OrderForm, MakePaymentForm
 from issues.models import Issue
 import stripe
 
-# Create your views here.
 
 stripe.api_key = settings.STRIPE_SECRET
+
 
 def checkout(request):
     user = User.objects.get(email=request.user.email)
@@ -26,24 +26,32 @@ def checkout(request):
             for id, quantity in cart.items():
                 issue = get_object_or_404(Issue, pk=id)
                 total += quantity * 100
-                order_line_item = OrderLineItem(order=order, issue=issue, quantity=quantity)
+                order_line_item = OrderLineItem(order=order, issue=issue,
+                                                quantity=quantity)
                 order_line_item.save()
             try:
-                customer = stripe.Charge.create(amount=int(total * 100), currency="GBP",
-                    description=request.user.email, card=payment_form.cleaned_data["stripe_id"])
+                customer = stripe.Charge.create(amount=int(total * 100),
+                                                currency="GBP",
+                                                description=request.user.email,
+                                                card=payment_form.cleaned_data
+                                                ["stripe_id"])
             except stripe.error.CardError:
                 messages.error(request, "Your card was declined!")
             if customer.paid:
-                messages.success(request, "Thank You! Your payment was successful!")
+                messages.success(request,
+                                 "Thank You! Your payment was successful!")
                 request.session["cart"] = {}
                 return redirect("issues")
             else:
                 messages.error(request, "Unable to take payment")
         else:
             print(payment_form.errors)
-            messages.error(request, "We are unable to take a payment with that card")
+            messages.error(request,
+                           "We are unable to take a payment with that card")
     else:
         order_form = OrderForm(instance=user.userprofile)
         payment_form = MakePaymentForm()
     return render(request, "checkout.html", {"order_form": order_form,
-        "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
+                                             "payment_form": payment_form,
+                                             "publishable":
+                                                 settings.STRIPE_PUBLISHABLE})

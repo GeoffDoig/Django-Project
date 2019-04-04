@@ -1,5 +1,7 @@
 from django.conf.urls import url
-from .views import get_issues, show_issue, new_issue, display_screenshot, voting
+from .views import (get_issues, show_issue, new_issue,
+                    display_screenshot, voting)
+
 
 urlpatterns = [
     url(r'^all/', get_issues, name="issues"),

@@ -1,7 +1,6 @@
 from django.db import models
 from issues.models import Issue
 
-# Create your models here.
 
 class Order(models.Model):
     full_name = models.CharField(max_length=50, blank=False)
@@ -13,14 +12,16 @@ class Order(models.Model):
     postcode = models.CharField(max_length=20, blank=True)
     phone_number = models.CharField(max_length=20, blank=False)
     date = models.DateField()
-    
+
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
-        
+
+
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
     issue = models.ForeignKey(Issue, null=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(blank=False)
-    
+
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.id, self.order.full_name, self.issue.title)
+        return "{0}-{1}-{2}".format(self.id, self.order.full_name,
+                                    self.issue.title)

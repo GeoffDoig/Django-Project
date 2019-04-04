@@ -37,10 +37,12 @@
                         <span><i class="fas fa-user"></i> {{ issue.username }}</span>
                         <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date }}</span>
                     </div>
-                    <div class="row justify-content-center mt-3">
-                        <span><a href="{% url 'screenshot' issue.id %}" class="btn btn-info" target="_blank">
-                            <i class="far fa-image"></i> View Screenshot</a></span>
-                    </div>
+                    {% if issue.screenshot %}
+                        <div class="row justify-content-center mt-3">
+                            <span><a href="{% url 'screenshot' issue.id %}" class="btn btn-info" target="_blank">
+                                <i class="far fa-image"></i> View Screenshot</a></span>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <hr>
@@ -62,11 +64,24 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form | as_bootstrap }}
-                <div class="row justify-content-around my-4">
+                <div class="row justify-content-center my-4">
                     <button class="btn btn-success" type="submit"><i class="far fa-comment-alt"></i> Add Comment</button>
-                    <a href="{% url 'voting' issue.id %}" class="btn btn-info px-4"><i class="far fa-thumbs-up"></i> I Agree</a>
                 </div>
             </form>
+            <div class="row justify-content-center my-4">
+                {% if issue.category == "B" %}
+                    <div class="col-md-7">
+                        <p>Do you have this bug as well? Click to register your desire to have this issue resolved</p>
+                    </div>
+                {% else %}
+                    <div class="col-md-7">
+                        <p>Would you pay £100 towards this feature being developed? Click to register your consent</p>
+                    </div>
+                {% endif %}
+                    <div class="col-md-4 offset-4 offset-md-1">
+                        <a href="{% url 'voting' issue.id %}" class="btn btn-info px-4"><i class="far fa-thumbs-up"></i> I Agree</a>
+                    </div>
+            </div>
         </div>
     {% else %}
         <div class="row justify-content-center my-4">

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -13,7 +12,8 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=40, blank=True)
     postcode = models.CharField(max_length=20, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    avatar = models.ImageField(upload_to="profile_images", default="default.png")
-    
+    avatar = models.ImageField(upload_to="profile_images",
+                               default="default.png")
+
     def __str__(self):
         return self.user.username
