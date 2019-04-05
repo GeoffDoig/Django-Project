@@ -2,6 +2,8 @@
 
 {% block page_title %}Issue Tracker Issues{% endblock %}
 
+{% load tz %}
+
 {% block content %}
 <div class="container">
     <div class="row justify-content-center my-4">
@@ -33,7 +35,7 @@
                     <div class="card-body">
                         <div class="row justify-content-around">
                             <span><i class="fas fa-user"></i> {{ issue.username }}</span>
-                            <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date }}</span>
+                            <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date|timezone:"Europe/London" }}</span>
                             <span>{{ issue.count }} <i class="far fa-comment-alt"></i></span>
                         </div>
                     </div>

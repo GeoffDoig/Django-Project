@@ -20,7 +20,7 @@
         </div>
         <div class="col-10 offset-1">
             <div class="row justify-content-center">
-                <p>Sign up now and update your personal user profile to maximise your experience</p>
+                <p>Sign up now and update your user profile to personalise your experience</p>
             </div>
             <div class="row justify-content-center">
                 <a href="{% url 'registration' %}" class="btn btn-success mb-3"><i class="fas fa-user-plus"></i> Sign Up</a>
@@ -55,6 +55,6 @@
     </div>
     <hr>
     <div class="row justify-content-center">
-        <img class="img-fluid" src="{{ pie_chart }}" alt="Pie chart">
+        <div class="chart">{{ pie_chart|safe }}</div>
     </div>
 {% endblock %}

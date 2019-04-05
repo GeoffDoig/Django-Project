@@ -29,7 +29,7 @@
             <form method="POST" enctype="multipart/form-data" id="update-form">
             {% csrf_token %}
                 <fieldset class="form-group">
-                    {{ update_form | as_bootstrap }}
+                    {{ update_form|as_bootstrap }}
                     <div class="row justify-content-center my-4">
                         <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check-square"></i> Update Profile</button>
                     </div>
@@ -57,10 +57,10 @@
         <h3>{{ user }}'s Activity</h3>
     </div>
     <div class="row align-items-center my-4">
-        <div class="col-md-7">
-            <img class="img-fluid" src="{{ bar_chart }}" alt="Bar Chart">
+        <div class="col-12 col-lg-7">
+            <div class="chart">{{ bar_chart|safe }}</div>
         </div>
-        <div class="col-md-5 pt-3">
+        <div class="col-10 offset-1 col-lg-5 pt-3">
             <p><button id="btn1" class="btn btn-sm"></button> You have created {{ num_user_bugs }} issues as bugs on the Issue Tracker</p>
             <p><button id="btn2" class="btn btn-sm"></button> You have created {{ num_user_features }} issues as features on the Issue Tracker</p>
             <p><button id="btn3" class="btn btn-sm"></button> You have added {{ user_bug_comments }} comments to bug issues</p>

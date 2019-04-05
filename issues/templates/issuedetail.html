@@ -4,6 +4,8 @@
 
 {% load bootstrap_tags %}
 
+{% load tz %}
+
 {% block content %}
 <div class="container">
     <div class="row justify-content-center my-4">
@@ -35,7 +37,7 @@
                     <p class="card-text">{{ issue.description }}</p>
                     <div class="row justify-content-around">
                         <span><i class="fas fa-user"></i> {{ issue.username }}</span>
-                        <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date }}</span>
+                        <span><i class="fas fa-calendar-alt"></i> {{ issue.reported_date|timezone:"Europe/London" }}</span>
                     </div>
                     {% if issue.screenshot %}
                         <div class="row justify-content-center mt-3">
@@ -49,7 +51,7 @@
             {% for entry in entries %}
                 <div class="card comment">
                     <div class="card-header">
-                        <p>{{ entry.id }}. {{ entry.username }} on {{ entry.comment_date }} commented</p>
+                        <p>{{ entry.id }}. {{ entry.username }} on {{ entry.comment_date|timezone:"Europe/London" }} commented</p>
                     </div>
                     <div class="card-body">
                         <p>{{ entry.comment }}</p>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from issues.models import Issue
 
 
@@ -24,4 +25,5 @@ def adjust_cart(request, pk):
     issue.votes -= 1
     issue.save()
     request.session["cart"] = cart
-    return redirect("view_cart")
+    messages.success(request, "Your item has been removed from the cart")
+    return redirect("issues")

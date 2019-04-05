@@ -4,6 +4,8 @@
 
 {% load bootstrap_tags %}
 
+{% load tz %}
+
 {% block page_title %}Issue Tracker Checkout{% endblock %}
 
 {% block content %}
@@ -37,7 +39,7 @@
                     <div class="card-body">
                         <div class="row justify-content-around">
                             <span><i class="fas fa-user"></i> {{ item.issue.username }}</span>
-                            <span><i class="fas fa-calendar-alt"></i> {{ item.issue.reported_date }}</span>
+                            <span><i class="fas fa-calendar-alt"></i> {{ item.issue.reported_date|timezone:"Europe/London" }}</span>
                         </div>
                     </div>
                 </div>

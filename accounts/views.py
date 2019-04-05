@@ -22,7 +22,7 @@ def index(request):
     fig1 = plt.figure()
     frequency = [blogposts, bug_comments, feature_comments, bug_issues,
                  feature_issues]
-    activities = ["Blog Posts", "Bug Comments", "Feature\nComments",
+    activities = ["Blog Posts", "Bug Comments", "Feature Comments",
                   "Bugs Raised", "Features Requested"]
     colors = ["maroon", "blue", "cyan", "green", "yellowgreen"]
     plt.pie(frequency, labels=activities, colors=colors, startangle=90,

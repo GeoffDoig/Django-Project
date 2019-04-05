@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import url, include
 from django.contrib import admin
 from accounts import urls as urls_accounts
@@ -23,6 +24,7 @@ from checkout import urls as urls_checkout
 from blog import urls as urls_blog
 from django.views import static
 from .settings import MEDIA_ROOT
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
