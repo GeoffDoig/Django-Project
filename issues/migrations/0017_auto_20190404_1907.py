@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='issue',
             name='category',
-            field=models.CharField(choices=[('B', 'Bug'), ('F', 'Feature')], default='B', max_length=1),
+            field=models.CharField(choices=[('B', 'Bug'), ('F', 'Feature')],
+                                   default='B', max_length=1),
         ),
     ]

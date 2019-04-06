@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='comments',
             name='comments',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='issues.Issue'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models
+                                    .deletion.CASCADE, to='issues.Issue'),
         ),
     ]

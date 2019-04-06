@@ -14,7 +14,7 @@
             <div class="col-md-8 offset-md-2">
                 <ul>
                     {% for message in messages %}
-                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" role="alert"{% endif %}>{{ message }}</li>
+                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
                     {% endfor %}
                 </ul>
             </div>

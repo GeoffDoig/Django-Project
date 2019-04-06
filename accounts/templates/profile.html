@@ -14,15 +14,20 @@
             <div class="col-md-8 offset-md-2">
                 <ul>
                     {% for message in messages %}
-                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" role="alert"{% endif %}>{{ message }}</li>
+                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
     {% endif %}
     <div class="row justify-content-around my-4">
-        <h3>Personal Details</h3>
-        <button id="update-profile" class="btn btn-primary">Update Your Profile</button>
+        <div class="col-md-5 offset-md-2">
+            <h3>Personal Details</h3>
+        </div>
+        <div class="col-md-5">
+            <p>Why not personalise your account?</p>
+            <button id="update-profile" class="btn btn-primary">Update Your Profile Now</button>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -60,7 +65,7 @@
         <div class="col-12 col-lg-7">
             <div class="chart">{{ bar_chart|safe }}</div>
         </div>
-        <div class="col-10 offset-1 col-lg-5 pt-3">
+        <div class="col-10 offset-1 col-lg-5 offset-lg-0 pt-3">
             <p><button id="btn1" class="btn btn-sm"></button> You have created {{ num_user_bugs }} issues as bugs on the Issue Tracker</p>
             <p><button id="btn2" class="btn btn-sm"></button> You have created {{ num_user_features }} issues as features on the Issue Tracker</p>
             <p><button id="btn3" class="btn btn-sm"></button> You have added {{ user_bug_comments }} comments to bug issues</p>

@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='avatar',
-            field=models.ImageField(default='/media/profile_images/default.png', upload_to=''),
+            field=models.ImageField(default='/media/profile_images/ \
+                                    default.png', upload_to=''),
         ),
     ]

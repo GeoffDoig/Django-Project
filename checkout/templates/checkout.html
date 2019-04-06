@@ -18,7 +18,7 @@
             <div class="col-md-8 offset-md-2">
                 <ul>
                     {% for message in messages %}
-                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" role="alert"{% endif %}>{{ message }}</li>
+                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="row justify-content-center my-4">
-            <a href="{% url 'view_cart' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Cart</a>
+            <a href="{% url 'view_cart' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Return to Cart</a>
         </div>
         <hr>
     {% endfor %}

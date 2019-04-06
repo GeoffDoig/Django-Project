@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='issue',
             name='username',
-            field=models.CharField(default="User.objects.get('username')", max_length=30),
+            field=models.CharField(default="User.objects.get('username')",
+                                   max_length=30),
         ),
     ]

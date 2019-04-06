@@ -16,7 +16,7 @@
             <div class="col-md-8 offset-md-2">
                 <ul>
                     {% for message in messages %}
-                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" role="alert"{% endif %}>{{ message }}</li>
+                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -63,13 +63,6 @@
     </div>
     {% if user.is_authenticated %}
         <div class="col-md-6 offset-md-3">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form | as_bootstrap }}
-                <div class="row justify-content-center my-4">
-                    <button class="btn btn-success" type="submit"><i class="far fa-comment-alt"></i> Add Comment</button>
-                </div>
-            </form>
             <div class="row justify-content-center my-4">
                 {% if issue.category == "B" %}
                     <div class="col-md-7">
@@ -84,6 +77,13 @@
                         <a href="{% url 'voting' issue.id %}" class="btn btn-info px-4"><i class="far fa-thumbs-up"></i> I Agree</a>
                     </div>
             </div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <div class="row justify-content-center my-4">
+                    <button class="btn btn-success" type="submit"><i class="far fa-comment-alt"></i> Add Comment</button>
+                </div>
+            </form>
         </div>
     {% else %}
         <div class="row justify-content-center my-4">
@@ -94,7 +94,7 @@
         </div>
     {% endif %}
     <div class="row justify-content-center my-4">
-        <a href="{% url 'issues' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Back to Issues</a>
+        <a href="{% url 'issues' %}" class="btn btn-danger"><i class="fas fa-undo-alt"></i> Return to Issues</a>
     </div>
 </div>
 {% endblock %}

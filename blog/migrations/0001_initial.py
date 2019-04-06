@@ -16,12 +16,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Post',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=200)),
                 ('content', models.TextField()),
                 ('created_date', models.DateTimeField(auto_now_add=True)),
                 ('username', models.CharField(max_length=20)),
-                ('tag', models.CharField(blank=True, max_length=30, null=True)),
+                ('tag', models.CharField(blank=True, max_length=30,
+                                         null=True)),
                 ('views', models.IntegerField(default=0)),
             ],
         ),

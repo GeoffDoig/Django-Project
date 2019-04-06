@@ -9,7 +9,8 @@ from .forms import CommentsForm, NewIssueForm
 
 def get_issues(request):
     """ Display all issues ordered by date reported """
-    issues = Issue.objects.order_by("reported_date").annotate(count=Count("comment"))
+    issues = Issue.objects.order_by("reported_date") \
+                          .annotate(count=Count("comment"))
     return render(request, "issues.html", {"issues": issues})
 
 
@@ -25,8 +26,8 @@ def show_issue(request, pk):
                 Comment.objects.create(comment=request.POST["comment"],
                                        username=user, issue=issue)
                 form = CommentsForm()
-                messages.success(request,
-                                 "You have successfully commented on this issue")
+                messages.success(request, "You have successfully commented \
+                                 on this issue")
                 return render(request, "issuedetail.html",
                               {"issue": issue, "form": form,
                                "entries": entries})
@@ -76,12 +77,12 @@ def voting(request, pk):
     issue.votes += 1
     issue.save()
     if issue.category == "F":
-        messages.success(request,
-                         "You have successfully registered you would like this feature too!")
+        messages.success(request, "You have successfully registered you \
+                         would like this feature too!")
         return redirect("add_to_cart", pk=pk)
     elif issue.category == "B":
-        messages.success(request,
-                         "You have successfully registered that you have this bug too!")
+        messages.success(request, "You have successfully registered that you \
+                         have this bug too!")
         return redirect("show_issue", pk=pk)
     else:
         messages.error(request,
