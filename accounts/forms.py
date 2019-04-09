@@ -7,7 +7,8 @@ from .models import UserProfile
 
 class UserLoginForm(forms.Form):
     """ Form to log users in """
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Email Address"}))
+    username = forms.CharField(widget=forms.TextInput
+                               (attrs={"placeholder": "Email Address"}))
     password = forms.CharField(widget=forms.PasswordInput)
 
 
