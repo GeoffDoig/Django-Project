@@ -1,11 +1,17 @@
+/*------ Additional general settings for whole site ------*/
 body {
-    margin: 0;
     padding-top: 56px;
     background-color: #ededed;
     color: #003366;
 }
 
+.boldtext {
+    font-weight: 500;
+}
+
+/*------ Additional styling for navbar ------*/
 .navbar {
+    
     background-color: #003366;
 }
 
@@ -14,21 +20,23 @@ body {
     text-decoration: underline;
 }
 
+/*------ Settings for the Home page header ------*/
 #headline {
     background-image: url(/media/headline.jpg);
     background-color: #003366;
     background-repeat: space;
     background-blend-mode: color;
     height: auto;
-    width: auto;
+    width: 100%;
     color: #ffffff;
 }
 
-.chart {
-    width: auto;
-    height: auto;
+/*------ Setting to align home page to fit viewport ------*/
+.content {
+    margin: 0;
 }
 
+/*------ Success message settings ------*/
 .success {
     color: #28a745;
     border-color: #28a745;
@@ -37,6 +45,7 @@ body {
     text-align: center;
 }
 
+/*------ Error message settings ------*/
 .error {
     color: #dc3545;
     border-color: #dc3545;
@@ -45,33 +54,40 @@ body {
     text-align: center;
 }
 
+/*------ Additional setting for each issue card ------*/
+.card-title {
+    font-size: 1.25rem;
+}
+
+/*------ Fixed Issue settings ------*/
 .F {
     color: #28a745;
     border-color: #28a745;
 }
 
+/*------ In Progress Issue settings ------*/
 .P {
     color: #ffc107;
     border-color: #ffc107;
 }
 
+/*------ Open Issue settings ------*/
 .O {
     color: #dc3545;
     border-color: #dc3545;
 }
 
+/*------ Issue comment settings ------*/
 .comment {
     border-color: #003366;
 }
 
-.boldtext {
-    font-weight: 500;
-}
-
+/*------ Additional setting for Profile update form ------*/
 #update-form {
     display: none;
 }
 
+/*------ Adding specific colors to profile bar chart legend ------*/
 #btn1 {
     background-color: green;
 }
@@ -92,14 +108,8 @@ body {
     background-color: maroon;
 }
 
-.card-title {
-    font-size: 1.25rem;
-}
-
+/*------ Additional settings for page footer ------*/
 footer {
-    margin-top: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
     border-top: 1px solid #ededed;
     background-color: #003366;
     color: #ffffff;

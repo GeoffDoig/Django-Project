@@ -1,3 +1,4 @@
+// Stripe required Javascript
 $(function() {
     $("#payment_form").submit(function() {
         var form = this;

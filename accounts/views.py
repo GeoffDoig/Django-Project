@@ -1,5 +1,6 @@
-import matplotlib.pyplot as plt
 import matplotlib
+matplotlib.use("agg")
+import matplotlib.pyplot as plt
 import mpld3
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
@@ -8,7 +9,6 @@ from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm, ProfileUpdateForm
 from issues.models import Issue, Comment
 from blog.models import Post
-matplotlib.use("agg")
 
 
 def index(request):
@@ -19,7 +19,8 @@ def index(request):
     bug_comments = Comment.objects.filter(issue__category="B").count()
     feature_comments = Comment.objects.filter(issue__category="F").count()
 
-    fig1 = plt.figure()
+    # Create a pie-chart
+    fig1 = plt.figure(figsize=(3, 3))
     frequency = [blogposts, bug_comments, feature_comments, bug_issues,
                  feature_issues]
     activities = ["Blog Posts", "Bug Comments", "Feature Comments",
@@ -100,6 +101,7 @@ def user_profile(request):
     else:
         update_form = ProfileUpdateForm(instance=user.userprofile)
 
+    # Collate user activity stats
     num_user_blogposts = Post.objects.filter(author=user).count()
     user_bug_comments = Comment.objects.filter(issue__category="B",
                                                username=user).count()
@@ -109,7 +111,8 @@ def user_profile(request):
     num_user_features = Issue.objects.filter(category="F",
                                              username=user).count()
 
-    fig2 = plt.figure()
+    # Create user's bar chart
+    fig2 = plt.figure(figsize=(3.5, 3.5))
     x = [1, 2, 3, 4, 5]
     y = [num_user_bugs, num_user_features, user_bug_comments,
          user_feature_comments, num_user_blogposts]

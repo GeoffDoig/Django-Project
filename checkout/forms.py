@@ -3,6 +3,7 @@ from .models import Order
 
 
 class MakePaymentForm(forms.Form):
+    """ Form for users to submit payment """
     MONTH_CHOICE = [(i, i) for i in range(1, 13)]
     YEAR_CHOICE = [(i, i) for i in range(2017, 2036)]
 
@@ -17,6 +18,7 @@ class MakePaymentForm(forms.Form):
 
 
 class OrderForm(forms.ModelForm):
+    """ Form required to create user invoice """
     class Meta:
         model = Order
         fields = ["full_name", "street_address1", "street_address2",

@@ -3,7 +3,8 @@
 {% block page_title %}Issue Tracker Home{% endblock %}
 
 {% block content %}
-    <div class="row py-3" id="headline">
+    <!-- Page to display home content -->
+    <div class="row py-3 content" id="headline">
         <div class="col-10 offset-1">
             <div class="row justify-content-center">
                 <h1>Welcome to the Issue Tracker</h1>
@@ -28,7 +29,7 @@
         </div>
     </div>
     <hr>
-    <div class="row align-items-center">
+    <div class="row align-items-center content">
         <div class="col-5 offset-1">
             <p>Report any issues you may have or request any features you would like to see developed.
                 Add your own comments to existing issues and read the opinions of your fellow issue trackers</p>
@@ -36,16 +37,16 @@
                 <a href="{% url 'issues' %}" class="btn btn-info"><i class="fas fa-clipboard-list"></i> View Issues</a>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             <img src="/media/issues.jpg" alt="Issues Image" class="img-fluid">
         </div>
     </div>
     <hr>
-    <div class="row align-items-center">
+    <div class="row align-items-center content">
         <div class="col-5 offset-1">
             <img src="/media/blog.jpg" alt="Blog Image" class="img-fluid">
         </div>
-        <div class="col-6">
+        <div class="col-5">
             <p>Join our community blog and post your own articles or opinions on all things I.T related
                 and read the articles and opinions of your fellow issue trackers</p>
             <div class="row justify-content-center">
@@ -54,7 +55,9 @@
         </div>
     </div>
     <hr>
-    <div class="row justify-content-center">
-        <div class="chart">{{ pie_chart|safe }}</div>
+    <div class="container-fluid">
+        <div class="row justify-content-center content">
+            <div class="chart">{{ pie_chart|safe }}</div>
+        </div>
     </div>
 {% endblock %}
