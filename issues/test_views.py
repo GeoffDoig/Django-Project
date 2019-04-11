@@ -16,7 +16,7 @@ class TestIssuesViews(TestCase):
         self.assertTemplateUsed(page, "issues.html")
 
     def test_show_screenshot_page(self):
-        issue = Issue(title="Test Issue")
+        issue = Issue(title="Test Issue", screenshot="Test.jpg")
         issue.save()
         page = self.client.get("/issues/{0}/screenshot".format(issue.id))
         self.assertEqual(page.status_code, 200)
