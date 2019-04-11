@@ -2,6 +2,8 @@
 
 {% block page_title %}Issue Tracker Home{% endblock %}
 
+{% load static %}
+
 {% block content %}
     <!-- Page to display home content -->
     <div class="row py-3 content" id="headline">
@@ -38,13 +40,13 @@
             </div>
         </div>
         <div class="col-5">
-            <img src="/media/issues.jpg" alt="Issues Image" class="img-fluid">
+            <img src="{% static 'img/issues.jpg' %}" alt="Issues Image" class="img-fluid">
         </div>
     </div>
     <hr>
     <div class="row align-items-center content">
         <div class="col-5 offset-1">
-            <img src="/media/blog.jpg" alt="Blog Image" class="img-fluid">
+            <img src="{% static 'img/blog.jpg' %}" alt="Blog Image" class="img-fluid">
         </div>
         <div class="col-5">
             <p>Join our community blog and post your own articles or opinions on all things I.T related
