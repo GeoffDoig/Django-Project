@@ -13,14 +13,12 @@
         <h1>This Issue</h1>
     </div>
     {% if messages %}
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <ul>
-                    {% for message in messages %}
-                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+        <div class="row justify-content-center">
+            <ul>
+                {% for message in messages %}
+                    <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
         </div>
     {% endif %}
     <div class="row">
@@ -67,7 +65,7 @@
             <div class="row justify-content-center my-4">
                 {% if issue.category == "B" %}
                     <div class="col-md-7">
-                        <p class="boldtext">Do you have this bug as well? Click to register your desire to have this issue resolved</p>
+                        <p class="boldtext">Do you have this bug as well? Click to register your interest in having this issue resolved</p>
                     </div>
                 {% else %}
                     <div class="col-md-7">
