@@ -36,6 +36,11 @@ body {
     margin: 0;
 }
 
+/*------ Setting to remove list padding for messages ------*/
+.message-list {
+    padding: 0px;
+}
+
 /*------ Success message settings ------*/
 .success {
     color: #28a745;

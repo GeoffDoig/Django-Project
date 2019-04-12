@@ -11,12 +11,14 @@
         <h1>Blog</h1>
     </div>
     {% if messages %}
-        <div class="row justify-content-center">
-            <ul>
-                {% for message in messages %}
-                    <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <ul class="message-list">
+                    {% for message in messages %}
+                        <li id="messages" {% if message.tags %} class="alert alert-light {{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     {% endif %}
     {% for post in posts %}
