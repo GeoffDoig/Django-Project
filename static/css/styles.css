@@ -22,7 +22,7 @@ body {
 
 /*------ Settings for the Home page header ------*/
 #headline {
-    background-image: url(media/headline.jpg);
+    background-image: url(/static/img/headline.jpg);
     background-color: #003366;
     background-repeat: space;
     background-blend-mode: color;
