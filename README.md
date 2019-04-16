@@ -65,7 +65,7 @@ as well as layout and responsiveness on a variety of different screen sizes.
    1. The Home Page is displayed on loading and displays text and images for the application, with buttons to link to view the issues, the blog
       or to sign up for an account. All buttons direct to the correct pages and the layout is correct on different screen sizes. Statistical
       information relating to all user activity across the Issue Tracker Web Application is displayed in the form of a pie chart.
-   2. The Issues page displays all the issues on the application oredered by date. Individual issues are colour-coded according to their status.
+   2. The Issues page displays all the issues on the application ordered by date. Individual issues are colour-coded according to their status.
       Clicking the 'Create New Issue' button at the bottom of the page, at this stage, will direct the user to log in to their account
       or sign up for an account if they don't already have one. Clicking on a specific Issue title displays full details of that issue
       and any associated comments and then prompts the user to log in or sign up for an account.
@@ -85,8 +85,8 @@ as well as layout and responsiveness on a variety of different screen sizes.
       page to process payment for the requested feature.
    8. The Checkout page displays the feature(s) the user is being charged for and provides forms for the user to complete their personal details
       and card details in order for the payment to be processed. If the user has completed their profile, the personal details section is already
-      completed. Clicking 'Submit Payment' processes the payment through Stripe and directs the user back to the Issues page displaying a success
-      message.
+      completed. A test card number of 4242 4242 4242 4242 can be used to complete the card details section. Clicking 'Submit Payment' processes
+      the payment through Stripe and directs the user back to the Issues page displaying a success message.
    9. The Profile page is accessed from the link on the navigation bar at the top of the page and displays the user's personal details and current
       image used as the profile picture. Statistical information relating to the specific user's activity across the Issue Tracker Web Application
       is displayed in the form of a bar chart with key. Clicking the 'Update your Profile Now' button, reveals a form with which the user can add
