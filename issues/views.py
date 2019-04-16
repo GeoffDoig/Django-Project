@@ -8,14 +8,18 @@ from .forms import CommentsForm, NewIssueForm
 
 
 def get_issues(request):
-    """ Display all issues ordered by date reported """
+    """
+    Display all issues ordered by date reported
+    """
     issues = Issue.objects.order_by("reported_date") \
                           .annotate(count=Count("comment"))
     return render(request, "issues.html", {"issues": issues})
 
 
 def show_issue(request, pk):
-    """ Display full details of a single issue """
+    """
+    Display full details of a single issue
+    """
     issue = get_object_or_404(Issue, pk=pk)
     entries = issue.comment_set.all()
     if request.user.is_authenticated:
@@ -45,7 +49,9 @@ def show_issue(request, pk):
 
 @login_required
 def new_issue(request):
-    """ Provide a form for users to complete to create new issues """
+    """
+    Provide a form for users to complete to create new issues
+    """
     user = User.objects.get(email=request.user.email)
     if request.method == "POST":
         form = NewIssueForm(request.POST, request.FILES)
@@ -64,15 +70,19 @@ def new_issue(request):
 
 
 def display_screenshot(request, pk):
-    """ Display the relevant screenshot for a requested issue """
+    """
+    Display the relevant screenshot for a requested issue
+    """
     issue = get_object_or_404(Issue, pk=pk)
     screenshot = issue.screenshot
     return render(request, "screenshot.html", {"screenshot": screenshot})
 
 
 def voting(request, pk):
-    """ Add upvotes to 'votes' field and evaluate -
-        bugs are free, features are chargeable """
+    """
+    Add upvotes to 'votes' field and evaluate -
+    bugs are free, features are chargeable
+    """
     issue = get_object_or_404(Issue, pk=pk)
     issue.votes += 1
     issue.save()

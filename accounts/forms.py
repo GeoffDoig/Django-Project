@@ -6,14 +6,18 @@ from .models import UserProfile
 
 
 class UserLoginForm(forms.Form):
-    """ Form to log users in """
+    """
+    Form to log users in
+    """
     username = forms.CharField(widget=forms.TextInput
                                (attrs={"placeholder": "Email Address"}))
     password = forms.CharField(widget=forms.PasswordInput)
 
 
 class UserRegistrationForm(UserCreationForm):
-    """ Form to register users """
+    """
+    Form to register users
+    """
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirm Password",
                                 widget=forms.PasswordInput)
@@ -42,7 +46,9 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    """ Form for users to update profile details """
+    """
+    Form for users to update profile details
+    """
     class Meta:
         model = UserProfile
         fields = ["full_name", "street_address1", "street_address2",

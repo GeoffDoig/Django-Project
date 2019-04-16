@@ -3,7 +3,9 @@ from issues.models import Issue
 
 
 class Order(models.Model):
-    """ Fields required for user order and invoice """
+    """
+    Fields required for user order and invoice
+    """
     full_name = models.CharField(max_length=50, blank=False)
     street_address1 = models.CharField(max_length=40, blank=False)
     street_address2 = models.CharField(max_length=40, blank=True)
@@ -19,7 +21,9 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    """ Fields required to place an order for a specific issue """
+    """
+    Fields required to place an order for a specific issue
+    """
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
     issue = models.ForeignKey(Issue, null=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(blank=False)

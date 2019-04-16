@@ -2,7 +2,9 @@ from django.db import models
 
 
 class Issue(models.Model):
-    """ Fields required for a single issue reported """
+    """
+    Fields required for a single issue reported
+    """
     STATUS_CHOICES = (
         ("O", "Open"),
         ("P", "In Progress"),
@@ -28,7 +30,9 @@ class Issue(models.Model):
 
 
 class Comment(models.Model):
-    """ Fields required for a single comment on a specific issue """
+    """
+    Fields required for a single comment on a specific issue
+    """
     issue = models.ForeignKey(Issue, null=False, on_delete=models.CASCADE)
     comment = models.TextField()
     username = models.CharField(max_length=20)

@@ -13,7 +13,9 @@ stripe.api_key = settings.STRIPE_SECRET
 
 
 def checkout(request):
-    """ Display order and payment forms and process payment """
+    """
+    Display order and payment forms and process payment
+    """
     user = User.objects.get(email=request.user.email)
     if request.method == "POST":
         order_form = OrderForm(request.POST)

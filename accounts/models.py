@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-    """ Fields required to complete a user profile """
+    """
+    Fields required to complete a user profile
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=50, blank=True)
     street_address1 = models.CharField(max_length=40, blank=True)

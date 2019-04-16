@@ -4,7 +4,9 @@ from django.dispatch import receiver
 from .models import UserProfile
 
 
-""" Create a new user profile when a new user registers on the site """
+"""
+Create a new user profile when a new user registers on the site
+"""
 @receiver(post_save, sender=User)
 def create_userprofile(sender, instance, created, **kwargs):
     if created:

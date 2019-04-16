@@ -7,13 +7,17 @@ from .forms import BlogPostForm
 
 
 def get_posts(request):
-    """ Display all blog posts ordered by date created """
+    """
+    Display all blog posts ordered by date created
+    """
     posts = Post.objects.order_by("created_date")
     return render(request, "blogposts.html", {"posts": posts})
 
 
 def post_detail(request, pk):
-    """ Display full details of an individual blog post """
+    """
+    Display full details of an individual blog post
+    """
     post = get_object_or_404(Post, pk=pk)
     post.views += 1
     post.save()
@@ -22,7 +26,9 @@ def post_detail(request, pk):
 
 @login_required
 def create_post(request):
-    """ Allow the user to create a new blog post """
+    """
+    Allow the user to create a new blog post
+    """
     user = User.objects.get(email=request.user.email)
     if request.method == "POST":
         form = BlogPostForm(request.POST)

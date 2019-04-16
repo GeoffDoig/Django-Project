@@ -12,7 +12,9 @@ from blog.models import Post
 
 
 def index(request):
-    """ Display index.html file """
+    """
+    Display index.html file
+    """
     blogposts = Post.objects.all().count()
     bug_issues = Issue.objects.filter(category="B").count()
     feature_issues = Issue.objects.filter(category="F").count()
@@ -34,13 +36,17 @@ def index(request):
 
 
 def logout(request):
-    """ Log the user out """
+    """
+    Log the user out
+    """
     auth.logout(request)
     return redirect("index")
 
 
 def login(request):
-    """ Display login page """
+    """
+    Display login page
+    """
     if request.user.is_authenticated:
         return redirect("issues")
     if request.method == "POST":
@@ -61,7 +67,9 @@ def login(request):
 
 
 def registration(request):
-    """ Display registration page """
+    """
+    Display registration page
+    """
     if request.user.is_authenticated:
         return redirect("issues")
     if request.method == "POST":
@@ -85,7 +93,9 @@ def registration(request):
 
 @login_required
 def user_profile(request):
-    """ Display the user's profile page """
+    """
+    Display the user's profile page
+    """
     user = User.objects.get(email=request.user.email)
     if request.method == "POST":
         update_form = ProfileUpdateForm(request.POST, request.FILES,
